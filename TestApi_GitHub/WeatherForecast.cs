@@ -1,6 +1,6 @@
 namespace TestApi_GitHub
 {
-    public class WeatherForecast
+    public clas WeatherForecast
     {
         public DateTime Date { get; set; }
 
