@@ -1,21 +1,11 @@
-#See https://aka.ms/containerfastmode to understand how Visual Studio uses this Dockerfile to build your images for faster debugging.
-
-FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS base
-WORKDIR /app
-EXPOSE 80
-
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
-COPY ["TestApi_GitHub/TestApi_GitHub.csproj", "TestApi_GitHub/"]
-RUN dotnet restore "TestApi_GitHub/TestApi_GitHub.csproj"
 COPY . .
-WORKDIR "/src/TestApi_GitHub"
-RUN dotnet build "TestApi_GitHub.csproj" -c Release -o /app/build
 
-FROM build AS publish
+# Publish instead of build
 RUN dotnet publish "TestApi_GitHub.csproj" -c Release -o /app/publish
 
-FROM base AS final
+FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS runtime
 WORKDIR /app
-COPY --from=publish /app/publish .
+COPY --from=build /app/publish .
 ENTRYPOINT ["dotnet", "TestApi_GitHub.dll"]
