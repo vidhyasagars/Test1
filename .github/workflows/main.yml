@@ -35,7 +35,7 @@ jobs:
 
       - name: Build Tag and push Docker Image
         env:
-          IMAGE_NAME: jfrog-docker-example-image
+          IMAGE_NAME: trialqinzrc.jfrog.io/mdpt-docker/jfrog-docker-example-image
           VERSION_TAG: v1.0.${{ github.run_number }}
         run: |
           jf docker build \
