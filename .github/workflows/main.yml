@@ -37,7 +37,7 @@ jobs:
         env:
           IMAGE_NAME: trialqinzrc.jfrog.io/mdpt-docker/jfrog-docker-example-image:${{ github.run_number }}
         run: |
-          jf docker build -t $IMAGE_NAME .
+          jf docker build -t $IMAGE_NAME --file TestApi_GitHub/Dockerfile TestApi_GitHub
           jf docker push $IMAGE_NAME
           
       - name: Publish Build info With JFrog CLI
