@@ -17,7 +17,7 @@ jobs:
       with:
         dotnet-version: '6.0.x'
     - name: Restore dependencies
-      run: dotnet restore TestAWS.sln
+      run: dotnet restore TestApi_GitHub.sln
     - run: dotnet build --no-restore
     
   build-and-tag:
